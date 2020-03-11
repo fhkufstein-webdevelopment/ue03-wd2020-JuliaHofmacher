@@ -1,6 +1,14 @@
 @import "compass/reset";
 @import "compass/css3";
 
+$black: #000;
+$background: #fafafa;
+$color1: #d9534f;
+$color2: #f0ad4e;
+$color3: #5cb85c;
+$color4: #d3d3d3;
+
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -16,7 +24,7 @@ body {
 
 
 input[type="text"],input[type="password"] {
-    border:1px solid #000;
+    border:1px solid $black;
     padding:5px;
     margin:10px 5px 10px 5px;
 
@@ -24,9 +32,9 @@ input[type="text"],input[type="password"] {
 }
 
 input[type="submit"] {
-    border:1px solid #000;
+    border:1px solid $black;
     border-radius:0;
-    background-color:#fafafa;
+    background-color:$background;
     margin:10px 5px 10px 5px;
     cursor:pointer;
 }
@@ -53,86 +61,72 @@ label {
 }
 
 .feedback.error {
-    color:#d9534f;
+    color:$color1;
 }
 
 .feedback.warning {
-    color:#f0ad4e;
+    color:$color2;
 }
 
 .feedback.success {
-    color:#5cb85c;
+    color:$color3;
 }
 
 .strengthIndicator {
-    margin:10px 5px 10px 5px;
+    margin: 10px 5px 10px 5px;
     width: 200px;
-    padding:5px;
+    padding: 5px;
     height: 13px;
-    border:1px solid #d3d3d3;
-}
+    border: 1px solid $color4;
 
-.strengthIndicator::before {
-    content: "";
-    display: block;
-    height: 100%;
+    &::before {
+        content: "";
+        display: block;
+        height: 100%;
 
-    -moz-transition-property: width;
-    -o-transition-property: width;
-    -webkit-transition-property: width;
-    transition-property: width;
+        @include transition-property(width);
+        @include transition-delay(0);
+        @include transition-duration(250ms);
+        @include transition-timing-function(linear);
 
-    -moz-transition-delay: 0;
-    -o-transition-delay: 0;
-    -webkit-transition-delay: 0;
-    transition-delay: 0;
 
-    -moz-transition-duration: 250ms;
-    -o-transition-duration: 250ms;
-    -webkit-transition-duration: 250ms;
-    transition-duration: 250ms;
+        .passwordWrapper::after {
+            content: "";
+            display: block;
+            clear: both;
+            float: none;
+        }
 
-    -moz-transition-timing-function: linear;
-    -o-transition-timing-function: linear;
-    -webkit-transition-timing-function: linear;
-    transition-timing-function: linear;
-}
+        .error .strengthIndicator::before {
+            width: 10%;
+            background-color: $color1;
+        }
 
-.passwordWrapper::after {
-    content: "";
-    display: block;
-    clear: both;
-    float: none;
-}
+        .warning .strengthIndicator::before {
+            width: 60%;
+            background-color: $color2;
+        }
 
-.error .strengthIndicator::before {
-    width: 10%;
-    background-color: #d9534f;
-}
+        .success .strengthIndicator::before {
+            width: 100%;
+            background-color: $color3;
+        }
 
-.warning .strengthIndicator::before {
-    width: 60%;
-    background-color: #f0ad4e;
-}
+        .feedback.error, .feedback.warning, .feedback.success {
+            display: none;
+        }
 
-.success .strengthIndicator::before {
-    width: 100%;
-    background-color: #5cb85c;
-}
+        .error .feedback.error {
+            display: block;
+        }
 
-.feedback.error, .feedback.warning, .feedback.success {
-    display: none;
-}
+        .warning .feedback.warning {
+            display: block;
+        }
 
-.error .feedback.error {
-    display: block;
-}
-
-.warning .feedback.warning {
-    display: block;
-}
-
-.success .feedback.success {
-    display: block;
+        .success .feedback.success {
+            display: block;
+        }
+    }
 }
 
