@@ -10,25 +10,29 @@
 
 
 .btn {
-    transition-property: padding;
-    transition-duration: 600ms;
-    transition-delay: 500ms;
-    transition-timing-function: linear;
+    @include transition-property (padding);
+    @include transition-duration (600ms);
+    @include transition-delay (500ms);
+    @include transition-timing-function (linear);
 
     &.ease-in {
-        transition-timing-function: ease-in;
+        @include transition-timing-function (ease-in);
+        @include transition-duration (3s);
     }
 
     &.ease-out {
-        transition-timing-function: ease-out;
+
+        @include transition-timing-function (ease-out);
+        @include transition-duration (3s);
     }
 
     &.ease-in-out {
-        transition-timing-function: ease-in-out;
+        @include transition-timing-function (ease-in-out);
+        @include transition-duration (3s);
     }
 
     &.green {
-        transition-property: color;
+       @include transition-property (color);
     }
 
     &.animation {
